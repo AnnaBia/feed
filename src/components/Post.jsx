@@ -1,5 +1,5 @@
 import { Comment } from './Comment'
-
+import { Avatar } from './Avatar'
 import styles from './Post.module.css'
 
 export function Post() {
@@ -7,8 +7,8 @@ export function Post() {
         <article className={styles.post}>
             <header>
                 <div className={styles.author}>
-                    <img
-                        className={styles.avatar}
+                    <Avatar
+                        hasBorder
                         src="https://github.com/AnnaBia.png"
                     />
                     <div className={styles.authorInfo}>
@@ -40,8 +40,6 @@ export function Post() {
             </form>
 
             <div className={styles.commentList}>
-                <Comment />
-                <Comment />
                 <Comment />
             </div>
         </article >
