@@ -11,6 +11,7 @@ import styles from './Post.module.css'
 export function Post({ author, content, publishedAt }) {
     const [comments, setComments] = useState([])
     const [newCommentText, setNewCommentText] = useState('')
+    
     const publishedDateFormatted = format(publishedAt, "d 'de' LLLL 'às' HH:mm'h'", {
         locale: ptBR,
     })
@@ -31,13 +32,16 @@ export function Post({ author, content, publishedAt }) {
         setNewCommentText(event.target.value)
     }
 
-    function deleteComment(commentToDelete){
+    function deleteComment(commentToDelete) {
         const commentsWithoutDeletedOne = comments.filter(comment => {
             return comment !== commentToDelete
         })
 
         setComments(commentsWithoutDeletedOne)
     }
+
+    const isNewCommentEmpty = newCommentText.length === 0
+
     return (
         <article className={styles.post}>
             <header>
@@ -61,7 +65,7 @@ export function Post({ author, content, publishedAt }) {
                         return <p key={line.content}>{line.content}</p>
                     }
                     else if (line.type === 'link') {
-                        return <p key={line.content}><a href={line.content}>{line.content}</a></p>
+                        return <p key={line.content}>👉 <a href={line.content}>{line.content}</a></p>
                     }
                 })}
             </div>
@@ -73,19 +77,20 @@ export function Post({ author, content, publishedAt }) {
                     name="comment"
                     value={newCommentText}
                     onChange={handleNewCommentTextChange}
+                    required
                 />
                 <footer>
-                    <button type="submit">Comentário</button>
+                    <button type="submit" disabled={isNewCommentEmpty}>Comentário</button>
                 </footer>
             </form>
 
             <div className={styles.commentList}>
                 {comments.map(comment => {
-                    return(
+                    return (
                         <Comment
-                        key={comment}
-                        content={comment}
-                        onDeleteComment={deleteComment}
+                            key={comment}
+                            content={comment}
+                            onDeleteComment={deleteComment}
                         />
                     )
                 })}
