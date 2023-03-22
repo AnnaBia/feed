@@ -1,3 +1,5 @@
+import { Comment } from './Comment'
+
 import styles from './Post.module.css'
 
 export function Post() {
@@ -23,7 +25,7 @@ export function Post() {
                 <p className={styles.spacingLink}>
                     <a href="">#novoprojeto</a>
                     <a href="">#nlw</a>
-                    <a href="">#rocketseat </a>
+                    <a href="">#rocketseat</a>
                 </p>
             </div>
 
@@ -36,6 +38,12 @@ export function Post() {
                     <button type="submit">Comentário</button>
                 </footer>
             </form>
-        </article >  
-    )       
+
+            <div className={styles.commentList}>
+                <Comment />
+                <Comment />
+                <Comment />
+            </div>
+        </article >
+    )
 }
