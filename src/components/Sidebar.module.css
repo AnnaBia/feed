@@ -44,3 +44,8 @@
     align-items: center;
     justify-content: center;
 }
+
+.sidebar footer a:hover {
+    color: var(--green-300);
+    border: 1px solid var(--green-300);
+}

@@ -1,10 +1,10 @@
 import styles from './Header.module.css'
-import igniteLogo from '../assets/ignite-logo.svg'
+import nanaLogo from '../assets/nana-logo.svg'
 
 export function Header() {
     return (
         <div className={styles.header}>
-            <img src={igniteLogo} alt="Logotipo do Ignite" />
+            <img src={nanaLogo} alt="Logotipo do Ignite" />
         </div>
     )
 }
