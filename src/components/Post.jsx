@@ -1,5 +1,4 @@
 import { useState } from 'react'
-
 import { format, formatDistanceToNow } from 'date-fns'
 import ptBR from 'date-fns/locale/pt-BR'
 
@@ -24,7 +23,12 @@ export function Post({ author, content, publishedAt }) {
     function handleCreateNewComment() {
         event.preventDefault()
 
-        setComments([...comments, newCommentText])
+        let newComments={
+            comment: newCommentText,
+            commentDate: new Date(),
+        }
+        
+        setComments((state) => [...state, newComments])
         setNewCommentText('')
     }
 
@@ -34,7 +38,7 @@ export function Post({ author, content, publishedAt }) {
 
     function deleteComment(commentToDelete) {
         const commentsWithoutDeletedOne = comments.filter(comment => {
-            return comment !== commentToDelete
+            return comment.comment !== commentToDelete
         })
 
         setComments(commentsWithoutDeletedOne)
@@ -65,7 +69,7 @@ export function Post({ author, content, publishedAt }) {
                         return <p key={line.content}>{line.content}</p>
                     }
                     else if (line.type === 'link') {
-                        return <p key={line.content}>👉 <a href={line.content}>{line.content}</a></p>
+                        return <p key={line.content}>👉 <a href={line.content} target="_blank">{line.content}</a></p>
                     }
                 })}
             </div>
@@ -88,8 +92,9 @@ export function Post({ author, content, publishedAt }) {
                 {comments.map(comment => {
                     return (
                         <Comment
-                            key={comment}
-                            content={comment}
+                            key={comment.comment}
+                            content={comment.comment}
+                            commentDate={comment.commentDate}
                             onDeleteComment={deleteComment}
                         />
                     )

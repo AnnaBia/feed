@@ -17,7 +17,7 @@ export function Sidebar() {
                 <span>Web Developer</span>
             </div>
             <footer>
-                <a href="https://www.linkedin.com/in/anayujraespejo">
+                <a href="https://www.linkedin.com/in/anayujraespejo" target="_blank">
                     Visualizar perfil
                 </a>
             </footer>
